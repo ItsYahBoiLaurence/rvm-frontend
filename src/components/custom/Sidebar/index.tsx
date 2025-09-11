@@ -1,4 +1,4 @@
-import { Calendar, Inbox, Search, Settings, Table } from "lucide-react"
+import { BriefcaseBusiness, Table } from "lucide-react"
 
 import {
     Sidebar,
@@ -13,29 +13,14 @@ import { Link } from "react-router-dom"
 
 const items = [
     {
-        title: "Home",
+        title: "Transactions",
         url: "/",
         icon: Table,
     },
     {
-        title: "Inbox",
+        title: "API Management",
         url: "/api-management",
-        icon: Inbox,
-    },
-    {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar,
-    },
-    {
-        title: "Search",
-        url: "#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "#",
-        icon: Settings,
+        icon: BriefcaseBusiness,
     },
 ]
 
