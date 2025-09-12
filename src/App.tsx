@@ -1,5 +1,7 @@
+import { ApiManagement } from './pages/ApiManagement'
 import { Dashboard } from './pages/Dashboard'
 import { useRoutes } from 'react-router-dom'
+import { NotFound } from './pages/NotFound'
 
 function App() {
   return useRoutes([
@@ -9,11 +11,11 @@ function App() {
     },
     {
       path: '/api-management',
-      element: <div>Hello</div>
+      element: <ApiManagement />
     },
     {
       path: "*",
-      element: <div>Page Not Found</div>
+      element: <NotFound />
     }
   ])
 }

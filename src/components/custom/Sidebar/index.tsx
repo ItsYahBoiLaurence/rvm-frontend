@@ -13,7 +13,7 @@ import { Link } from "react-router-dom"
 
 const items = [
     {
-        title: "Transactions",
+        title: "RVM Transactions",
         url: "/",
         icon: Table,
     },
