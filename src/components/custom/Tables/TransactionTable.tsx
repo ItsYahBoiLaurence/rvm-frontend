@@ -11,7 +11,7 @@ import {
     useReactTable,
 } from "@tanstack/react-table"
 
-import type { ColumnDef, ColumnFiltersState, PaginationState, SortingState, VisibilityState } from "@tanstack/react-table"
+import type { ColumnDef, ColumnFiltersState, PaginationState, RowSelectionState, SortingState, VisibilityState } from "@tanstack/react-table"
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -58,6 +58,12 @@ export const columns: ColumnDef<RVMData>[] = [
             <div>{row.getValue("rvmID")}</div>
         ),
     },
+    //item
+    {
+        accessorKey: "item",
+        header: "Item",
+        cell: ({ row }) => <div>{row.getValue("item")}</div>,
+    },
     //messageId
     {
         accessorKey: "messageID",
@@ -90,22 +96,7 @@ export const columns: ColumnDef<RVMData>[] = [
         },
         cell: ({ row }) => <div className="lowercase">{row.getValue("timestamp")}</div>,
     },
-    //item
-    {
-        accessorKey: "item",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Item
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
-        cell: ({ row }) => <div>{row.getValue("item")}</div>,
-    },
+
     //sign
     {
         accessorKey: "sign",
@@ -125,49 +116,19 @@ export const columns: ColumnDef<RVMData>[] = [
     //totalCount
     {
         accessorKey: "totalCount",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Total Count
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
+        header: "Total Count",
         cell: ({ row }) => <div>{row.getValue("totalCount")}</div>,
     },
     //totalValue
     {
         accessorKey: "totalValue",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Total Value
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
+        header: "Total Value",
         cell: ({ row }) => <div>{row.getValue("totalValue")}</div>,
     },
     //userID
     {
         accessorKey: "userID",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    User Id
-                    <ArrowUpDown />
-                </Button>
-            )
-        },
+        header: "User ID",
         cell: ({ row }) => <div>{row.getValue("userID")}</div>,
     },
 
@@ -202,7 +163,6 @@ export const columns: ColumnDef<RVMData>[] = [
 ]
 
 export function TransactionTable() {
-
     const { data } = useFetchTransactionData()
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -221,7 +181,7 @@ export function TransactionTable() {
         totalValue: true,
         userID: true,
     })
-    const [rowSelection, setRowSelection] = useState({})
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
 
     const table = useReactTable({
         data,

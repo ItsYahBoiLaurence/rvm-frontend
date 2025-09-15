@@ -1,9 +1,9 @@
 import api from "@/axiosApi"
-import type { ApiKeyListResponseType, ApiListResultType } from "@/types/api"
+import type { ApiData } from "@/types/api"
 import { useQuery } from "@tanstack/react-query"
 
-export function useFetchApiList(): ApiListResultType {
-    const { data: rawData, isError, isLoading } = useQuery<ApiKeyListResponseType[]>({
+export function useFetchApiList() {
+    const { data: rawData, isError, isLoading } = useQuery<ApiData[]>({
         queryKey: ['api-list'],
         queryFn: async () => {
             const res = await api.get('/api-key-management/getApiList')
@@ -11,7 +11,7 @@ export function useFetchApiList(): ApiListResultType {
         }
     })
 
-    const data = rawData ?? [] as ApiKeyListResponseType[]
+    const data = rawData ?? [] as ApiData[]
 
     return { data, isError, isLoading }
 }
