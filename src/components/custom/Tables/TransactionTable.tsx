@@ -207,13 +207,6 @@ export function TransactionTable() {
             pagination
         },
     })
-
-    console.log("Header")
-    console.log(table.getHeaderGroups())
-
-    console.log("rowmodel")
-    console.log(table.getRowModel())
-
     return (
         <div className="w-full">
             <p className="text-3xl">RVM Transaction Data</p>

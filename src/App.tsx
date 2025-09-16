@@ -1,23 +1,22 @@
 import { ApiManagement } from './pages/ApiManagement'
 import { Dashboard } from './pages/Dashboard'
-import { useRoutes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { NotFound } from './pages/NotFound'
+import Layout from './components/layouts/AppLayout'
+import { SignIn } from './pages/SignIn'
+import ProtectedRoute from './components/custom/ProtectedRoute'
 
-function App() {
-  return useRoutes([
-    {
-      path: '/',
-      element: <Dashboard />
-    },
-    {
-      path: '/api-management',
-      element: <ApiManagement />
-    },
-    {
-      path: "*",
-      element: <NotFound />
-    }
-  ])
+export default function App() {
+  return (
+    <Routes>
+      <Route path='/' element={<ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>}>
+        <Route index element={<Dashboard />} />
+        <Route path='api-management' element={<ApiManagement />} />
+      </Route>
+      <Route path='*' element={<NotFound />} />
+      <Route path='sign-in' element={<SignIn />} />
+    </Routes>
+  )
 }
-
-export default App
