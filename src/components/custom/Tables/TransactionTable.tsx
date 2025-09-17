@@ -210,7 +210,7 @@ export function TransactionTable() {
     return (
         <div className="w-full">
             <p className="text-3xl">RVM Transaction Data</p>
-            <div className="flex items-center py-4">
+            <div className="flex items-center py-4 gap-4">
                 <Input
                     placeholder="Filter by RVM id"
                     value={(table.getColumn("rvmID")?.getFilterValue() as string) ?? ""}

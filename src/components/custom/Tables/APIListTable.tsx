@@ -65,10 +65,10 @@ export function APIListTable() {
         name: true,
         description: true,
         isActive: true,
-        dateCreated: true,
+        dateCreated: false,
         companyOwner: true,
         role: true,
-        id: true
+        id: false
     })
 
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
@@ -98,7 +98,6 @@ export function APIListTable() {
         },
 
     })
-
 
     return (
         <>
