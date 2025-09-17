@@ -1,17 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { useAuthStore } from "@/stores"
 import type { CredentialType } from "@/types/auth"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-
-const creds: CredentialType = {
-    email: 'johnlaurenceburgos@gmail.com',
-    password: "Mayan@123!!"
-}
 
 export function SignIn() {
 
