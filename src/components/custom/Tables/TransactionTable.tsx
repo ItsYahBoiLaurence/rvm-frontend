@@ -12,8 +12,8 @@ import {
 } from "@tanstack/react-table"
 
 import type { ColumnDef, ColumnFiltersState, PaginationState, RowSelectionState, SortingState, VisibilityState } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { ArrowUpDown, ChevronDown } from "lucide-react"
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Input } from "@/components/ui/input"
 import type { RVMData } from "@/types/data"
