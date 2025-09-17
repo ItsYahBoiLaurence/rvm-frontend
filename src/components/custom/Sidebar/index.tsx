@@ -11,7 +11,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link, useLocation } from "react-router-dom"
-import { useAuthStore } from "@/stores"
+import { useSupabaseAuth } from "@/stores"
 
 const items = [
     {
@@ -28,7 +28,7 @@ const items = [
 
 export default function AppSidebar() {
     const { pathname } = useLocation()
-    const { logout } = useAuthStore()
+    const { signOut } = useSupabaseAuth()
     return (
         <Sidebar collapsible="icon">
             <SidebarContent>
@@ -52,7 +52,7 @@ export default function AppSidebar() {
             <SidebarFooter>
                 <SidebarMenuItem  >
                     <SidebarMenuButton asChild >
-                        <div onClick={() => logout()}>
+                        <div onClick={() => signOut()}>
                             <LogOut />
                             <span>Logout</span>
                         </div>

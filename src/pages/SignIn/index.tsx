@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useAuthStore } from "@/stores"
+import { useSupabaseAuth } from "@/stores"
 import type { CredentialType } from "@/types/auth"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
@@ -16,18 +16,25 @@ export function SignIn() {
         }
     })
 
-    const { login, isAuthenticated } = useAuthStore()
+    const { user, signIn } = useSupabaseAuth()
+
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/', { replace: true })
-    }, [navigate, isAuthenticated])
+        if (user) navigate('/', { replace: true })
+    }, [navigate, user])
 
     const submit = async (creds: CredentialType) => {
-        await login(creds)
-        console.log(creds)
-        if (useAuthStore.getState().isAuthenticated) {
-            navigate('/')
+        try {
+            const { error } = await signIn(creds)
+            if (error) throw error
+        } catch (error) {
+            console.log(error)
+            if (error == "invalid_credentials") {
+                form.setError("email", {})
+                form.setError("password", { message: "Email or Password is incorrect!" })
+            }
+            throw error
         }
     }
     return (
